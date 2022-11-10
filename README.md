@@ -1,5 +1,5 @@
 # html-js-libs
-html with js libs
+examples of html with js libs
 
 
 ## refs
