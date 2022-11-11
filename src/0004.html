@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   0004.html
-  Plot HTML5 Charts with canvas using Chart.js library
+  Plot HTML5 chart (xy scatter) with canvas using Chart.js library
   
   Sparisoma Viridi | https://github.com/dudung
   
@@ -59,7 +59,7 @@ window.onload = function() {
 
 
 <div class="markdown">
-# plot HTML5 charts with canvas using Chart.js
+# plot HTML5 chart (xy scatter) with canvas using Chart.js
 </div>
 
 <div class="markdown">
@@ -69,6 +69,7 @@ window.onload = function() {
 <div>
 <canvas id="chart1" style="width:100%;max-width:400px">
 </canvas>
+
 <script>
 var xyValues = [
   {x:0, y:1},  {x:1, y:2},  {x:2, y:4}, {x:3, y:8}, {x:4, y:16},
@@ -80,15 +81,29 @@ new Chart("chart1", {
   type: "scatter",
   data: {
     datasets: [{
+      data: xyValues,
+      label: "data-1",
+      fill: true,
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
       pointRadius: 4,
       pointBackgroundColor: "rgba(0,128,255,0.8)",
-      data: xyValues,
-      showLine: true
+      showLine: true,
+      borderColor: "rgb(255, 0, 0)",
+      borderDash: [5, 5],
+      borderWidth: 1,
+      pointBackgroundColor: "#55bae7",
+      pointBorderColor: "#0f0",
+      pointHoverBackgroundColor: "#00f",
+      pointHoverBorderColor: "#f00",
     }]
   },
   options: {
+    plugins: { legend: { display: false } },
     scales: {
-      y: { title: { display: true, text: 'y' } },
+      y: {
+        title: { display: true, text: 'y' },
+        grid: { color: '#f0f', borderColor: 'blue', borderDash: [10, 5, 5]}
+      },
       x: { title: { display: true, text: 'x' } },
     }
   },
@@ -102,7 +117,51 @@ Previous result is obtained using
 </div>
 
 <div class="markdown">
-```js
+```html
+<div>
+&lt;canvas id="chart1" style="width:100%;max-width:400px">
+</canvas>
+
+&lt;script>
+var xyValues = [
+  {x:0, y:1},  {x:1, y:2},  {x:2, y:4}, {x:3, y:8}, {x:4, y:16},
+  {x:5, y:32}, {x:6, y:16}, {x:7, y:8}, {x:8, y:4}, {x:9, y:2},
+  {x:10, y:1},
+];
+
+new Chart("chart1", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      data: xyValues,
+      label: "data-1",
+      fill: true,
+      backgroundColor: "rgba(0, 0, 0, 0.2)",
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(0,128,255,0.8)",
+      showLine: true,
+      borderColor: "rgb(255, 0, 0)",
+      borderDash: [5, 5],
+      borderWidth: 1,
+      pointBackgroundColor: "#55bae7",
+      pointBorderColor: "#0f0",
+      pointHoverBackgroundColor: "#00f",
+      pointHoverBorderColor: "#f00",
+    }]
+  },
+  options: {
+    plugins: { legend: { display: false } },
+    scales: {
+      y: {
+        title: { display: true, text: 'y' },
+        grid: { color: '#f0f', borderColor: 'blue', borderDash: [10, 5, 5]}
+      },
+      x: { title: { display: true, text: 'x' } },
+    }
+  },
+});
+</script>
+</div>
 ```
 </div>
 
@@ -110,6 +169,7 @@ in body section and with
 
 <div class="markdown">
 ```js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 ```
 </div>
 
