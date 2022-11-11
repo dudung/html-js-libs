@@ -1,0 +1,94 @@
+<!doctype html>
+<!--
+  0008.html
+  Simulate a system with matter-js library
+  
+  Sparisoma Viridi | https://github.com/dudung
+  
+  20221111 Create empty file and prepare to go home (1908).
+  
+  refs
+  1. url https://github.com/liabru/matter-js [20221111].
+-->
+<html>
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.1/markdown-it.min.js"></script>
+
+<style>
+.hljs {
+  overflow-x: auto;
+  padding: 1.0em;
+  background: #f4f4f4;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+ 
+  mdit.set({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          var code = '<pre class="hljs"><code>'
+            + hljs.highlight(lang, str, true).value
+            + '</code></pre>';
+          return code;
+        } catch (__) {}
+      }
+    }
+  });
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+
+<script src="https://unpkg.com/matter-js@0.18.0/build/matter.js"></script>
+
+</head>
+
+<body>
+<!-- content begin -->
+
+<div class="markdown">
+# simulate a system with matter-js
+</div>
+
+<div class="markdown">
+## result
+</div>
+
+<script>
+</script>
+
+<div class="markdown">
+## code
+Previous result is obtained using
+</div>
+
+<div class="markdown">
+```js
+```
+</div>
+
+in body section and with
+
+<div class="markdown">
+```js
+```
+</div>
+
+in head section of a HTML file.
+
+
+<!-- content end -->
+</body>
+</html>
