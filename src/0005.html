@@ -6,6 +6,7 @@
   Sparisoma Viridi | https://github.com/dudung
   
   20221111 Create this example as second example in html-js-libs repository.
+  Note: it will not render together with Markdown It!
   
   refs
   1. url https://github.com/kisonecat/tikzjax [20221111].
@@ -70,7 +71,14 @@ window.onload = function() {
 <div>
 <script type="text/tikz">
   \begin{tikzpicture}
-    \draw (0,0) circle (1in);
+    \draw [blue,thin,solid] (0,0) circle (1in);
+    \draw (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+    \draw [red,thick,dashed] (0,0) parabola (-2,2);
+    \draw [green] (-2,2) ellipse (1cm and 0.5cm);
+    \draw[step=1cm,gray,very thin] (-2,-2) grid (6,6);
+    \fill[blue!40!white] (2,2) rectangle (4,4);
+    \draw[thick,->] (2,2) -- (5,2) node[anchor=north west] {x};
+    \draw[thick,->] (2,2) -- (2,5) node[anchor=south east] {y};
   \end{tikzpicture}
 </script>
 </div>
@@ -82,6 +90,20 @@ Previous result is obtained using
 
 <div class="markdown">
 ```html
+&lt;div>
+&lt;script type="text/tikz">
+  \begin{tikzpicture}
+    \draw [blue,thin,solid] (0,0) circle (1in);
+    \draw (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+    \draw [red,thick,dashed] (0,0) parabola (-2,2);
+    \draw [green] (-2,2) ellipse (1cm and 0.5cm);
+    \draw[step=1cm,gray,very thin] (-2,-2) grid (6,6);
+    \fill[blue!40!white] (2,2) rectangle (4,4);
+    \draw[thick,->] (2,2) -- (5,2) node[anchor=north west] {x};
+    \draw[thick,->] (2,2) -- (2,5) node[anchor=south east] {y};
+  \end{tikzpicture}
+&lt;/script>
+&lt;/div>
 ```
 </div>
 
@@ -89,6 +111,8 @@ in body section and with
 
 <div class="markdown">
 ```js
+&lt;link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+&lt;script src="https://tikzjax.com/v1/tikzjax.js"></script>
 ```
 </div>
 
