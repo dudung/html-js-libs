@@ -8,6 +8,4 @@ tabel of content nearly in alphabetical index
 + [`aaba1967`](https://rawcdn.githack.com/dudung/html-js-libs/aaba1967/src/0002.html) [View LaTeX equations in HTML using MathJax](0002.html)
 + [`07916421`](https://rawcdn.githack.com/dudung/html-js-libs/07916421/src/0003.html) [Display flowchart in HTML using Mermaid](0003.html)
 + [`9e9d62f2`](https://rawcdn.githack.com/dudung/html-js-libs/9e9d62f2/src/0004.html) [Plot HTML5 Chart (xy scatter) with canvas using Chart.js](0004.html)
-+ [``]() [Execute TikZ code in HTML using TikZJax](0005.html)
-
-https://tikzjax.com/v1/tikzjax.js
++ [`8d79f446`](https://rawcdn.githack.com/dudung/html-js-libs/8d79f446/src/0005.html) [Execute TikZ code in HTML using TikZJax](0005.html)
