@@ -7,4 +7,4 @@ tabel of content nearly in alphabetical index
 + [`b63d883f`](https://rawcdn.githack.com/dudung/html-js-libs/b63d883f/src/0001.html) [Render markdown in HTML using Markdown It!](0001.html)
 + [`aaba1967`](https://rawcdn.githack.com/dudung/html-js-libs/aaba1967/src/0002.html) [View LaTeX equations in HTML using MathJax](0002.html)
 + [`07916421`](https://rawcdn.githack.com/dudung/html-js-libs/07916421/src/0003.html) [Display flowchart in HTML using Mermaid](0003.html)
-+ [``]() [Plot HTML5 Chart with canvas using Chart.js](0004.html)
++ [`9e9d62f2`](https://rawcdn.githack.com/dudung/html-js-libs/9e9d62f2/src/0004.html) [Plot HTML5 Chart (xy scatter) with canvas using Chart.js](0004.html)
