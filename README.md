@@ -10,7 +10,7 @@ $ git clone https://github.com/dudung/html-js-lib
 ```
 
 ## fork
-+ For all HTML files [fork on GitHub](https://github.com/dudung/html-js/fork).
++ For all HTML files [fork on GitHub](https://github.com/dudung/html-js-libs/fork).
 
 
 ## content
