@@ -1,0 +1,100 @@
+<!doctype html>
+<!--
+  0005.html
+  Execute TikZ code in HTML using TikZJax library
+  
+  Sparisoma Viridi | https://github.com/dudung
+  
+  20221111 Create this example as second example in html-js-libs repository.
+  
+  refs
+  1. url https://github.com/kisonecat/tikzjax [20221111].
+-->
+<html>
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.1/markdown-it.min.js"></script>
+
+<style>
+.hljs {
+  overflow-x: auto;
+  padding: 1.0em;
+  background: #f4f4f4;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+ 
+  mdit.set({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          var code = '<pre class="hljs"><code>'
+            + hljs.highlight(lang, str, true).value
+            + '</code></pre>';
+          return code;
+        } catch (__) {}
+      }
+    }
+  });
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+
+<link rel="stylesheet" type="text/css" href="http://tikzjax.com/v1/fonts.css">
+<script src="http://tikzjax.com/v1/tikzjax.js"></script>
+
+</head>
+<body>
+<!-- content begin -->
+
+
+<div class="markdown">
+# execute TikZ code in HTML using TikZJax
+</div>
+
+<div class="markdown">
+## result
+</div>
+
+<div>
+<script type="text/tikz">
+  \begin{tikzpicture}
+    \draw (0,0) circle (1in);
+  \end{tikzpicture}
+</script>
+</div>
+
+<div class="markdown">
+## code
+Previous result is obtained using
+</div>
+
+<div class="markdown">
+```html
+```
+</div>
+
+in body section and with
+
+<div class="markdown">
+```js
+```
+</div>
+
+in head section of a HTML file.
+
+
+<!-- content end -->
+</body>
+</html>
