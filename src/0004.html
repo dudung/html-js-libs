@@ -1,0 +1,121 @@
+<!doctype html>
+<!--
+  0004.html
+  Plot HTML5 Charts with canvas using Chart.js library
+  
+  Sparisoma Viridi | https://github.com/dudung
+  
+  20221111 Create this example as second example in html-js-libs repository.
+  
+  refs
+  1. url https://github.com/chartjs/Chart.js [20221111].
+-->
+<html>
+<head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.1/markdown-it.min.js"></script>
+
+<style>
+.hljs {
+  overflow-x: auto;
+  padding: 1.0em;
+  background: #f4f4f4;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+ 
+  mdit.set({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          var code = '<pre class="hljs"><code>'
+            + hljs.highlight(lang, str, true).value
+            + '</code></pre>';
+          return code;
+        } catch (__) {}
+      }
+    }
+  });
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+<!-- content begin -->
+
+
+<div class="markdown">
+# plot HTML5 charts with canvas using Chart.js
+</div>
+
+<div class="markdown">
+## result
+</div>
+
+<div>
+<canvas id="chart1" style="width:100%;max-width:400px">
+</canvas>
+<script>
+var xyValues = [
+  {x:0, y:1},  {x:1, y:2},  {x:2, y:4}, {x:3, y:8}, {x:4, y:16},
+  {x:5, y:32}, {x:6, y:16}, {x:7, y:8}, {x:8, y:4}, {x:9, y:2},
+  {x:10, y:1},
+];
+
+new Chart("chart1", {
+  type: "scatter",
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "rgba(0,128,255,0.8)",
+      data: xyValues,
+      showLine: true
+    }]
+  },
+  options: {
+    scales: {
+      y: { title: { display: true, text: 'y' } },
+      x: { title: { display: true, text: 'x' } },
+    }
+  },
+});
+</script>
+</div>
+
+<div class="markdown">
+## code
+Previous result is obtained using
+</div>
+
+<div class="markdown">
+```js
+```
+</div>
+
+in body section and with
+
+<div class="markdown">
+```js
+```
+</div>
+
+in head section of a HTML file.
+
+
+<!-- content end -->
+</body>
+</html>
