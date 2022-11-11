@@ -13,12 +13,116 @@
 <html>
 <head>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.1/markdown-it.min.js"></script>
+
+<style>
+.hljs {
+  overflow-x: auto;
+  padding: 1.0em;
+  background: #f4f4f4;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+ 
+  mdit.set({
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          var code = '<pre class="hljs"><code>'
+            + hljs.highlight(lang, str, true).value
+            + '</code></pre>';
+          return code;
+        } catch (__) {}
+      }
+    }
+  });
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+
 </head>
 <body>
 <!-- content begin -->
 
+<div class="markdown">
+# view $\LaTeX$ equations in HTML using MathJax
+</div>
 
+<div class="markdown">
+## result
+</div>
 
+<div>
+A quadratic equation
+
+$$\tag{1}\label{eq1}
+y = ax^2 + bx + c,
+$$
+
+will have two roots of $x_1$ and $x_2$, which are given by
+
+$$\tag{2}\label{eq2}
+x_{1,2} = \frac{-b \mp \sqrt{b^2 - 4ac}}{2a},
+$$
+
+that is known as quadratic formula. Substitusion of $x_1$ and $x_2$ from Equation $\eqref{eq2}$ to $\eqref{eq1}$ will make $y = 0$.
+</div>
+
+<div class="markdown">
+## code
+Previous result is obtained using
+</div>
+
+<div class="markdown">
+```html
+A quadratic equation
+
+$$\tag{1}\label{eq1}
+y = ax^2 + bx + c,
+$$
+
+will have two roots of $x_1$ and $x_2$, which are given by
+
+$$\tag{2}\label{eq2}
+x_{1,2} = \frac{-b \mp \sqrt{b^2 - 4ac}}{2a},
+$$
+
+that is known as quadratic formula. Substitusion of $x_1$ and $x_2$ from Equation $\eqref{eq2}$ to $\eqref{eq1}$ will make $y = 0$.
+```
+</div>
+
+in body section and with
+
+<div class="markdown">
+```html
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+</script>
+```
+</div>
+
+in head section of a HTML file.
 
 
 <!-- content end -->
