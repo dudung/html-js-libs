@@ -1,0 +1,205 @@
+<!doctype html>
+<!--
+  0000.html
+  Render markdown in HTML using Markdown It! library
+  
+  Sparisoma Viridi | https://github.com/dudung
+  
+  20221111 Create this example as second example in html-js-libs repository.
+  
+  refs
+  1. url https://github.com/markdown-it [20221111].
+-->
+<html>
+<head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js" integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: green;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee!important;
+  padding-top: 2px!important;
+}
+
+thead {
+  background-color: #000000!important;
+  color: #ffffff!important;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+body td, 
+body th {
+    border: 0px solid black;
+    padding: 6px 8px;
+}
+
+pre {
+  overflow-x: auto;
+  background-color: #f4f4f4;
+  padding: 12px 16px;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+
+</head>
+<body>
+<!-- content begin -->
+
+
+<div class="markdown">
+# render markdown
+Following result
+</div>
+
+<div class="markdown">
+## activities
+1. See [GitHub](https://github.com)
+2. Visit [CodePen](https://codepen.io/)
+
+### todo
++ Nothing
++ Being silent for a while
+  - Watch TV
+  - Hear radio
+    + Browse some websites
+    + Call someone
+
+#### a table
+a | b | c | d
+:-: | :-: | :-: | :-:
+1 | 2 | 4 | 6
+2 | 4 | 8 | 16
+3 | 9 | 27 | 81
+4 | 3 | 2 | 1
+
+
+##### image
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Github-circle_%28CoreUI_Icons_v1.0.0%29.svg)
+</div>
+
+<div>
+can be obtained in a HTML file using
+</div>
+
+<div class="markdown">
+```html
+## activities
+1. See [GitHub](https://github.com)
+2. Visit [CodePen](https://codepen.io/)
+
+### todo
++ Nothing
++ Being silent for a while
+  - Watch TV
+  - Hear radio
+    + Browse some websites
+    + Call someone
+
+#### a table
+a | b | c | d
+:-: | :-: | :-: | :-:
+1 | 2 | 4 | 6
+2 | 4 | 8 | 16
+3 | 9 | 27 | 81
+4 | 3 | 2 | 1
+
+
+##### image
+![](https://upload.wikimedia.org/wikipedia/commons/3/3f/Github-circle_%28CoreUI_Icons_v1.0.0%29.svg)
+```
+</div>
+
+<div>
+in the body section and with
+</div>
+
+<div class="markdown">
+```js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js" integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<style>
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: green;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee!important;
+  padding-top: 2px!important;
+}
+
+thead {
+  background-color: #000000!important;
+  color: #ffffff!important;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+body td, 
+body th {
+    border: 0px solid black;
+    padding: 6px 8px;
+}
+
+pre {
+  overflow-x: auto;
+  background-color: #f4f4f4;
+  padding: 12px 16px;
+}
+</style>
+
+<script>
+window.onload = function() {
+  var mdit = window.markdownit();
+  
+  var div = document.getElementsByClassName('markdown');
+  for(var i = 0; i < div.length; i++) {
+    var content = div[i].innerHTML;
+    var code = document.getElementsByClassName('markdown')[i];
+    code.innerHTML = mdit.render(content).replaceAll("&amp;", "&");
+  }
+}
+</script>
+```
+</div>
+
+<div>
+in the header section.
+</div>
+
+
+<!-- content end -->
+</body>
+</html>
