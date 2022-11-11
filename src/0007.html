@@ -53,7 +53,7 @@ window.onload = function() {
 
 <script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<!--script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script-->
 
 <style>
 .mol-container {
@@ -137,8 +137,10 @@ for(var i of atoms) {
 }
 var N = x.length;
 
-$(function() {
-  let element = $('#container-01');
+main();
+
+function main() {
+  let element = document.getElementById("container-01")
   let config = { backgroundColor: 'orange' };
   let viewer = $3Dmol.createViewer( element, config );
   
@@ -173,7 +175,7 @@ $(function() {
   viewer.render();
   viewer.zoom(0.8, 2000);
   viewer.setBackgroundColor('#f4f4f4');
-});
+};
 </script>
 
 <div class="markdown">
