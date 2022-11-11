@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   0007.html
-  Example of embedding a 3Dmol viewer with 3Dmol.js library
+  Display atoms in molecules using 3Dmol.js library
   
   Sparisoma Viridi | https://github.com/dudung
   
@@ -68,6 +68,13 @@ window.onload = function() {
 <body>
 <!-- content begin -->
 
+<div class="markdown">
+# draw rotating box in HTML using Three.js
+</div>
+
+<div class="markdown">
+## result
+</div>
 
 <div id="container-01" class="mol-container"></div>
 
@@ -139,12 +146,164 @@ $(function() {
     viewer.addSphere({ center: {x:x[i], y:y[i], z:z[i] }, radius: 0.4, color: c[i] });
   }
   
+  var drmax = 1.6;
+  for(var i = 0; i < N; i++) {
+    for(var j = 0; j < N; j++) {
+      if(i != j) {
+        var dx2 = (x[i] - x[j]) * (x[i] - x[j]);
+        var dy2 = (y[i] - y[j]) * (y[i] - y[j]);
+        var dz2 = (z[i] - z[j]) * (z[i] - z[j]);
+        var dr2 = dx2 + dy2 + dz2;
+        
+        if(dr2 < drmax * drmax) {
+          viewer.addCylinder({
+          start:{x:x[i], y:y[i], z:z[i]},
+          end:{x:x[j], y:y[j], z:z[j]},
+          radius:0.2,
+          fromCap:false,
+          toCap:true,
+          color: '#eee',
+          });
+        }
+      }
+    }
+  }
+  
   viewer.zoomTo();
   viewer.render();
   viewer.zoom(0.8, 2000);
-  viewer.setBackgroundColor('white');
+  viewer.setBackgroundColor('#f4f4f4');
 });
 </script>
+
+<div class="markdown">
+## code
+Previous result is obtained using
+</div>
+
+<div class="markdown">
+```js
+<div id="container-01" class="mol-container"></div>
+
+&lt;script>
+// url https://www.chemspider.com/Chemical-Structure.16893.html [20221111].
+var data =
+`#
+   10.1950   -2.0094    0.0000 O   0  0  0  0  0  0  0  0  0  0  0
+    4.8448   -0.5301    0.0000 O   0  0  0  0  0  0  0  0  0  0  0
+    4.8448   -6.5953    0.0000 O   0  0  0  0  0  0  0  0  0  0  0
+    7.4952   -0.4808    0.0000 N   0  0  0  0  0  0  0  0  0  0  0
+    7.4952   -6.6446    0.0000 N   0  0  0  0  0  0  0  0  0  0  0
+    6.1638   -2.8107    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    6.1638   -4.3270    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    3.5380   -2.8107    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    3.5380   -4.3270    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    4.8448   -2.0464    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    4.8448   -5.0790    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    7.5199   -1.9971    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    7.5199   -5.1283    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    8.8883   -2.7737    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    8.8883   -4.3517    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    2.1820   -1.9971    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    2.1820   -5.1283    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    0.8136   -2.7737    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    0.8136   -4.3517    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+   11.5140   -2.7614    0.0000 C   0  0  0  0  0  0  0  0  0  0  0
+    8.3089    0.0000    0.0000 H   0  0  0  0  0  0  0  0  0  0  0
+    6.6816   -0.0247    0.0000 H   0  0  0  0  0  0  0  0  0  0  0
+    8.3089   -7.1254    0.0000 H   0  0  0  0  0  0  0  0  0  0  0
+    6.6816   -7.1007    0.0000 H   0  0  0  0  0  0  0  0  0  0  0
+#`;
+
+// url https://www.ch.ic.ac.uk/rzepa/mim/domestic/html/atomcols.htm [20221111].
+colors = {
+  "H": "white",
+  "O": "red",
+  "Cl": "green",
+  "N": "blue",
+  "C": "grey",
+  "S": "yellow",
+  "P": "orange",
+};
+
+
+var atoms = data.trim().split('\n');
+atoms.shift();
+atoms.pop();
+
+var x = [];
+var y = [];
+var z = [];
+var c = [];
+for(var i of atoms) {
+  var r = i.split(/\s+/);
+  x.push(parseFloat(r[1]));
+  y.push(parseFloat(r[2]));
+  z.push(parseFloat(r[3]));
+  c.push(colors[r[4]]);
+}
+var N = x.length;
+
+$(function() {
+  let element = $('#container-01');
+  let config = { backgroundColor: 'orange' };
+  let viewer = $3Dmol.createViewer( element, config );
+  
+  for(var i = 0; i < N; i++) {
+    viewer.addSphere({ center: {x:x[i], y:y[i], z:z[i] }, radius: 0.4, color: c[i] });
+  }
+  
+  var drmax = 1.6;
+  for(var i = 0; i < N; i++) {
+    for(var j = 0; j < N; j++) {
+      if(i != j) {
+        var dx2 = (x[i] - x[j]) * (x[i] - x[j]);
+        var dy2 = (y[i] - y[j]) * (y[i] - y[j]);
+        var dz2 = (z[i] - z[j]) * (z[i] - z[j]);
+        var dr2 = dx2 + dy2 + dz2;
+        
+        if(dr2 < drmax * drmax) {
+          viewer.addCylinder({
+          start:{x:x[i], y:y[i], z:z[i]},
+          end:{x:x[j], y:y[j], z:z[j]},
+          radius:0.2,
+          fromCap:false,
+          toCap:true,
+          color: '#eee',
+          });
+        }
+      }
+    }
+  }
+  
+  viewer.zoomTo();
+  viewer.render();
+  viewer.zoom(0.8, 2000);
+  viewer.setBackgroundColor('#f4f4f4');
+});
+</script>
+```
+</div>
+
+in body section and with
+
+<div class="markdown">
+```js
+&lt;script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+&lt;script src="http://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+<style>
+.mol-container {
+  width: 60%;
+  height: 400px;
+  position: relative;
+}
+</style>
+```
+</div>
+
+in head section of a HTML file.
 
 
 <!-- content end -->
